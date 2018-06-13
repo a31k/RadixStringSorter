@@ -32,4 +32,5 @@ To access the code files for editing, import them into your favorite Java-suppor
 3. Desort feature, replacing sorted input with the original input
 
 ## Fixes
-> 06.13.2018: Patched bug where Scanner object was not escaping period, quotation, and vertical line delimiters. Result of bug was empty spaces where characters should have existed. Patched by using character sets to escape the delimiters, i.e. `[.] instead of .`
+_**06.13.2018:**_
+> Patched bug where Scanner object was not escaping period, quotation, and vertical line delimiters. Result of bug was empty spaces where characters should have existed. Patched by using character sets to escape the delimiters, i.e. `[.] instead of .`
