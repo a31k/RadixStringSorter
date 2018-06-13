@@ -30,3 +30,6 @@ To access the code files for editing, import them into your favorite Java-suppor
 1. Give user choice of what sorting algorithm to use and a corresponding performance report based on array accesses
 2. Compare feature using graphs to show the difference in performance between sorting algorithms
 3. Desort feature, replacing sorted input with the original input
+
+## Fixes
+> 06.13.2018: Patched bug where Scanner object was not escaping period, quotation, and vertical line delimiters. Result of bug was empty spaces where characters should have existed. Patched by using character sets to escape the delimiters, i.e. `[.] instead of .`
