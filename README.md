@@ -24,7 +24,7 @@ And more, considering the delimiter choices supplied to the client.
 
 ## Installation & accessing code files
 Installation is as simple as downloading the .zip file, extracting its contents, and running the included `Radix String Sorter.jar` file. 
-To access the code files for editing, import them into your favorite Java-supported IDE from the `/src/` folder.
+To access the code files for editing, import them into your favorite Java-supported IDE from the `RadixStringSorter` folder.
 
 ## Potential future revisions
 1. Give user choice of what sorting algorithm to use and a corresponding performance report based on array accesses
