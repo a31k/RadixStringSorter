@@ -52,31 +52,29 @@ public class Sorter {
 	 *         a completely sorted data set.
 	 */
 	public Queue[] sort(int numPlace) {
-	    
-		if (numPlace == 0) {
-			return buckets;
-		}
-		
-		Queue[] temp = new Queue[10];
-		for (int i = 0; i < 10; i++) {
-			temp[i] = new Queue();
-		}
-		
-		for (int i = 0; i <= 9; i++) {
-			Queue cur = buckets[i];
-			int numQueueElements = cur.getNumElements();
-			for (int j = 0; j < numQueueElements; j++) {
-				Entry<String, String> entry = cur.dequeue();
-				String number = "" + entry.getKey().charAt(numPlace - 1);
-				Integer num = Integer.parseInt(number);
-				temp[num].enqueue(entry);
-			}
-		}
-		
-		buckets = temp; //Make buckets reference temp for next pass.
-		
-		return sort(numPlace - 1);
-	}
+        
+        while (numPlace != 0) {
+        
+            Queue[] temp = new Queue[10];
+            for (int i = 0; i < 10; i++) {
+                temp[i] = new Queue();
+            }
+        
+            for (int i = 0; i <= 9; i++) {
+                Queue cur = buckets[i];
+                int numQueueElements = cur.getNumElements();
+                for (int j = 0; j < numQueueElements; j++) {
+                    Entry<String, String> entry = cur.dequeue();
+                    String number = "" + entry.getKey().charAt(numPlace - 1);
+                    Integer num = Integer.parseInt(number);
+                    temp[num].enqueue(entry);
+                }
+            }
+            buckets = temp; //Make buckets reference temp for next pass.
+            numPlace--;
+        }
+        return buckets;
+    }
 	
 	/**
 	 * Provides the client with a String representation of the sorted data,
