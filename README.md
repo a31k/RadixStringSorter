@@ -10,7 +10,7 @@ For example: `This,is,a,comma,separated,value,example` yields `This is a comma s
 Additionally, the user is given the choice of displaying text either separated by the newline character `\n` or by the generic space character. This provides visual aid to more easily discern the difference between shorter and longer character sequences.
 
 ## Application
-While the development of this program was mostly for personal learning and development, there are still potential applications such as:
+While the development of this program was mostly for my personal learning of the algorithm, there are still potential applications such as:
 
 - Pattern recognition
 - Indexing
