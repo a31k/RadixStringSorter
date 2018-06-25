@@ -10,7 +10,7 @@ For example: `This,is,a,comma,separated,value,example` yields `This is a comma s
 Additionally, the user is given the choice of displaying text either separated by the newline character `\n` or by the generic space character. This provides visual aid to more easily discern the difference between shorter and longer character sequences.
 
 ## Application
-While the development of this program was mostly for personal learning and development, there are still potential applications such as:
+While the development of this program was mostly for my personal learning of the algorithm, there are still potential applications such as:
 
 - Pattern recognition
 - Indexing
@@ -34,3 +34,6 @@ To access the code files for editing, import them into your favorite Java-suppor
 ## Fixes
 _**06.13.2018:**_
 > Patched bug where Scanner object was not escaping period, quotation, and vertical line delimiters. Result of bug was empty spaces where characters should have existed. Patched by using character sets to escape the delimiters, i.e. `[.] instead of .`
+
+_**06.25.2018:**_
+> Replaced recursive sorting method with an iterative version to reduce chances of stack overflow / program hangups. Also added runnable JAR file to same directory as the application's logo so that it will show the logo as an icon of the window.
