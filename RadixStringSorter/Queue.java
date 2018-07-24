@@ -6,7 +6,7 @@ package radixproject;
  * empty.
  * 
  * @author Drake Doss
- * @version 2018.06.12
+ * @version 2018.07.24
  */
 public class Queue {
 	
@@ -56,9 +56,11 @@ public class Queue {
 		if (isEmpty()) {
 			throw new IllegalStateException("No elements in queue");
 		}
+		
 		Entry<String, String> removedEntry = firstEntry;
 		firstEntry = firstEntry.getNext();
 		numElements--;
+		
 		return removedEntry;
 	}
 	

@@ -22,7 +22,7 @@ import javafx.scene.control.ChoiceBox;
  * choose the delimiter of his or her sorting process as well as
  * the separation method for each word.
  * @author Drake Doss
- * @version 2018.06.12
+ * @version 2018.07.24
  *
  */
 public class Main extends Application {
@@ -39,7 +39,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 		    
-		    //Initialize the window with welcoming text
+		    // Initialize the window with welcoming text
 		    setFields();
 		    root = new Group();
 		    list = root.getChildren();
@@ -57,7 +57,7 @@ public class Main extends Application {
             double textPosX = text.getLayoutX();
             text.setY(50);
             
-            //Create TextArea object to take user input.
+            // Create TextArea object to take user input.
 		    TextArea txtbox = new TextArea();
 		    txtbox.setPromptText("Enter text here");
 		    txtbox.setEditable(true);
@@ -67,8 +67,8 @@ public class Main extends Application {
 		    txtbox.setLayoutX(textPosX + textWidth + 25);
 		    txtbox.setLayoutY(10);
 		    
-		    //Create a button for the user to sort their data with as well as a
-		    //button for the user to exit the program.
+		    // Create a button for the user to sort their data with as well as
+		    // a button for the user to exit the program.
 		    Button sort = new Button("Sort");
 		    sort.setStyle("-fx-border-color: rgba(153, 217, 234, 0.7); "
 		        + "-fx-border-width: 5px; -fx-border-radius: 1px 1px 1px "
@@ -79,34 +79,34 @@ public class Main extends Application {
 		    Button exit = new Button("Exit program");
 		    
 		    
-		    //Create text to prompt the user for his or her String separation
-		    //method
+		    // Create text to prompt the user for his or her String separation
+		    // method
 		    Text outputPrompt = setText("Select string \nseparation method:", 20, 
 		        (int)(text.getY() + textHeight + 15), Font.font("Helvetica", 
 		            FontWeight.NORMAL, 12), generalText);
 		    
-		    //Use the width and height of the Text object to help set the dropdown
-		    //menu's coordinates
+		    // Use the width and height of the Text object to help set the
+		    // dropdown menu's coordinates
 		    Bounds outPromptBounds = outputPrompt.getLayoutBounds();
 		    double outputPromptWidth = outPromptBounds.getWidth();
 		    double outputPromptHeight = outPromptBounds.getHeight();
 		    outputType.setLayoutY(outputPrompt.getY() - 7);
 		    outputType.setLayoutX(outputPromptWidth + outputPrompt.getX() + 10);
 		    
-		    //Create dropdown menu for user to choose a delimiter.
+		    // Create dropdown menu for user to choose a delimiter.
 		    ChoiceBox<String> userDelimiter = new ChoiceBox<>();
-		    userDelimiter.getItems().addAll("Whitespace", ",", "[.]", "[|]", "[\"]", ", *");
+		    userDelimiter.getItems().addAll("Whitespace", ", *", ". *", "| *", "\\ *", ",", ".", "|", "\\");
 		    userDelimiter.setValue("Whitespace");
 		    userDelimiter.setLayoutX(outputType.getLayoutX());
 		    userDelimiter.setLayoutY(outputType.getLayoutY() + 40);
 		    
-		    //Create text object for user to be informed about delimiter choice.
+		    // Create text object for user to be informed about delimiter choice.
 		    Text userDelimPrompt = setText("Select delimiter:", 20, 
 		        (int)(outputPrompt.getY() + outputPromptHeight + 15), 
 		        Font.font("Helvetica", FontWeight.NORMAL, 12), generalText);
 		    setActions(txtbox, scene, sort, outputType, userDelimiter, exit);
 		    
-		    //Add all visual nodes to the ObservableList of the Group root
+		    // Add all visual nodes to the ObservableList of the Group root
 		    list.addAll(text, txtbox, sort, outputType, outputPrompt, 
 		        userDelimiter, userDelimPrompt, exit);
 		    root.requestFocus();
@@ -186,22 +186,30 @@ public class Main extends Application {
 	 */
 	private void setActions(TextArea txtbox, Scene scene, Button sort,
 	    ChoiceBox<String> outputPrompt, ChoiceBox<String> delimiter, Button exit) {
+	    
+	    // Set up sort button
 	    sort.setOnAction(e -> {
             String str = txtbox.getText();
             String delim = delimiter.getValue();
             Sorter slv = new Sorter(str, delim);
             InputAnalyzer ia = slv.getAnalyzer();
+            
             slv.sort(ia.getNumPlaces());
+            
+            // Set up how the text will be displayed to the user based on his
+            // or her choice
             if (outputPrompt.getValue() == "Spaces")
                 txtbox.setText(slv.printOut());
             else
                 txtbox.setText(slv.printOutWithNewLine());
         });
         
+	    // Allow user to click out of TextArea to "unhighlight" it
 	    scene.setOnMouseClicked(e -> {
             root.requestFocus();
         });
         
+	    // Allow user to exit the program
 	    exit.setOnAction(e -> {
 	        System.exit(0);
 	    });

@@ -8,13 +8,12 @@ import java.util.Scanner;
  * digit (LSD) radix sort. The number of passes is equal to the number
  * of places for each string. 
  * @author Drake Doss
- * @version 2018.06.12
+ * @version 2018.07.24
  *
  */
 public class InputAnalyzer {
 	
 	private int longest;
-	private String input;
 	private int numPlaces;
 	private int numStrings;
 	
@@ -26,10 +25,12 @@ public class InputAnalyzer {
 	 * @param delimiter The delimiter to be used in conjunction with the Scanner.
 	 */
 	public InputAnalyzer(Scanner sc, String delimiter) {
-		if (sc == null) {
-			throw new IllegalArgumentException("No input found");
+		if (sc == null ) {
+			throw new IllegalArgumentException("No scanner found");
 		}
-		input = "";
+		if (delimiter == null) {
+		    throw new IllegalArgumentException("No delimiter found");
+		}
 		sc.useDelimiter(delimiter);
 		if (delimiter == "Whitespace") {
             sc.reset();
@@ -52,17 +53,7 @@ public class InputAnalyzer {
 			if (next.length() > longest) {
 				longest = next.length();
 			}
-			
-			input += next;
 		}
-	}
-	
-	/**
-	 * Gives the client access to the input text.
-	 * @return The input text.
-	 */
-	public String getString() {
-		return input;
 	}
 	
 	/**
@@ -118,6 +109,7 @@ public class InputAnalyzer {
 		result.append(key);
 		String str = result.toString();
 		String biggest = "" + longest;
+		
 		if (str.length() > biggest.length()) {
 		    int diff = str.length() - biggest.length();
 		    return str.substring(diff);
@@ -134,7 +126,7 @@ public class InputAnalyzer {
 	 *         key should have.
 	 * @param length The length of the longest String given by the Scanner.
 	 */
-	public int calculateNumPlaces(int length) {
+	private int calculateNumPlaces(int length) {
 		if (length < 10) {
 			return 1;
 		}
